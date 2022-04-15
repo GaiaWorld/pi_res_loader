@@ -9,8 +9,7 @@ impl Res for MyRes {
 	type Key = u64;
 }
 
-impl Asset for MyRes {
-    type Desc = usize;
+impl Asset<usize> for MyRes {
 
     fn state(&self) -> State {
         self.1
@@ -23,14 +22,14 @@ impl Asset for MyRes {
     fn async_load(
 		load_mgr: &mut pi_res_loader::LoadMgr, 
 		asset: pi_share::Share<Self>/* Share<ShareCell<Self>>?*/, 
-		desc: Self::Desc) -> futures::future::BoxFuture<'static, ()> {
+		desc: usize) -> futures::future::BoxFuture<'static, ()> {
 			todo!()
     }
 
     fn load(
 		load_mgr: &mut pi_res_loader::LoadMgr,
 		asset: pi_share::Share<Self>, 
-		desc: Self::Desc) {
+		desc: usize) {
 		let res = unsafe { &mut *(Share::as_ptr(&asset) as usize as *mut Self)};
 		//res.1 = State::Loading;
 		res.0 = desc;
@@ -49,7 +48,7 @@ fn main() {
 	
 	let mut loop_count = 2;
 	while loop_count > 0 {
-		match load_mgr.get::<MyRes>(&key, group) {
+		match load_mgr.get::<usize, MyRes>(&key, group) {
 			Some(r) => println!("res==={:?}", r),
 			// 不存在资源时，创建资源
 			None => {
