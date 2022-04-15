@@ -1,0 +1,17 @@
+[package]
+name = "pi_res_loader"
+version = "0.1.0"
+authors = ["zmythleo <zmythleo@gmail.com>"]
+edition = "2021"
+description = "Resource Manager"
+repository = "https://github.com/GaiaWorld/pi_res.git"
+license = "MIT OR Apache-2.0"
+keywords = ["pi", "res_loader"]
+
+[dependencies]
+pi_res = "0.1"
+pi_share = "0.1"
+pi_enum_default_macro="0.1"
+derive_deref = "1.1"
+futures = "0.3"
+
