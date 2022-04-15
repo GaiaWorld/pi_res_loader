@@ -6,7 +6,7 @@ use pi_enum_default_macro::EnumDefault;
 use pi_share::Share;
 
 // TODO
-use pi_res::{Res, ResMgr};
+pub use pi_res::{Res, ResMgr};
 
 /// 资源
 /// 一个需要LoadMgr加载的资源，需要实现该trait
@@ -93,4 +93,3 @@ pub enum State {
 	Loading,
 	Ok,
 }
-
